@@ -1,22 +1,88 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import TextField from "@material-ui/core/TextField";
+import React from "react";
+import { FormControlLabel, MenuItem } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import isFunction from 'lodash/isFunction'
 
-import styles from './styles.css'
+export default (fields, methods) => {
+  return Object.keys(fields).map((name, idx) => {
+    const attributes = fields[name]
+    // console.log(attributes)
+    if (!attributes) return null
+    if (attributes.isCheckBox) return CheckboxField({ name, attributes, methods })
+    if (attributes.isSelectBox) return SelectBoxField({ name, attributes, methods })
+    return DefaultTextField({ name, attributes, methods })
+  })
+}
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+function DefaultTextField({ name, attributes, methods }) {
+  // const methods = useFormContext() // retrieve all hook methods
+  return (
+    <TextField
+      key={name}
+      margin="dense"
+      id={attributes.id || name}
+      name={attributes.name || name}
+      label={name}
+      variant={"outlined"}
+      error={Boolean(methods.errors[name])}
+      helperText={methods.errors[name] && methods.errors[name].message}
+      // defaultValue={attributes.defaultValue || ''}
+      fullWidth
+      inputRef={methods.register(attributes)}
+      {...attributes}
+    />
+  )
+}
 
-  render() {
-    const {
-      text
-    } = this.props
+function CheckboxField({ name, attributes, methods }) {
+  const { onChangeChecked } = attributes
+  return (
+    <FormControlLabel
+      control={
+        <Checkbox
+          name={name}
+          inputRef={methods.register({ name })}
+          onChange={(e, checked) => {
+            methods.setValue(name, checked)
+            if (isFunction(onChangeChecked)) {
+              onChangeChecked(checked)
+            }
+          }}
+          {...attributes}
+        />
+      }
+      label={attributes.label || name}
+    />
+  )
+}
 
+function SelectBoxField({ name, attributes, methods }) {
+  let { mapKey, mapValue, mapLabel, values, onChangeValue } = attributes
+
+  const children = values.map((val, idx) => {
     return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
+      <MenuItem key={isFunction(mapKey) ? mapKey(val) : idx}
+                value={isFunction(mapValue) ? mapValue(val) : idx}>
+        {isFunction(mapLabel) ? mapLabel(val) : idx}
+      </MenuItem>
     )
+  })
+
+  const newAttributes = {
+    ...attributes,
+    name,
+    select: true,
+    children,
+    onChange: (e) => {
+      const value = e.target.value;
+      methods.setValue(name, value)
+      if (isFunction(onChangeValue)) {
+        onChangeValue(value)
+      }
+    }
   }
+
+  return DefaultTextField({ name, attributes: newAttributes, methods })
+
 }
