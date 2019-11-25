@@ -1,7 +1,7 @@
 {
   "name": "mui-fields",
-  "version": "1.0.3",
-  "description": "Tiện dụng MUI TextField",
+  "version": "1.0.4",
+  "description": "MUI TextField kết hợp useForm",
   "author": "thanh@classfunc.com",
   "license": "MIT",
   "repository": "/mui-fields",

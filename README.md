@@ -11,8 +11,11 @@ npm install --save mui-fields
 ```
 
 ## Usage
-
+```js
+import renderFields from 'mui-fields'
 renderFields(settings, useFormMethods)
+```
+
 > #### settings: {fieldName: {...attributes}}: 
 >> fieldName (string): Tên của trường.
 >
