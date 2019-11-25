@@ -1,7 +1,8 @@
-import TextField from "@material-ui/core/TextField";
-import React from "react";
-import { FormControlLabel, MenuItem } from "@material-ui/core";
-import Checkbox from "@material-ui/core/Checkbox";
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import MenuItem from '@material-ui/core/MenuItem'
 import isFunction from 'lodash/isFunction'
 
 export default (fields, methods) => {
@@ -24,7 +25,7 @@ function DefaultTextField({ name, attributes, methods }) {
       id={attributes.id || name}
       name={attributes.name || name}
       label={name}
-      variant={"outlined"}
+      variant={'outlined'}
       error={Boolean(methods.errors[name])}
       helperText={methods.errors[name] && methods.errors[name].message}
       // defaultValue={attributes.defaultValue || ''}
@@ -75,7 +76,7 @@ function SelectBoxField({ name, attributes, methods }) {
     select: true,
     children,
     onChange: (e) => {
-      const value = e.target.value;
+      const value = e.target.value
       methods.setValue(name, value)
       if (isFunction(onChangeValue)) {
         onChangeValue(value)
