@@ -1,8 +1,8 @@
 {
   "name": "mui-fields",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
+  "version": "1.0.1",
+  "description": "MUI for tien dung",
+  "author": "thanh@classfunc",
   "license": "MIT",
   "repository": "/mui-fields",
   "main": "dist/index.js",
