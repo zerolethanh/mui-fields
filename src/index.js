@@ -30,6 +30,7 @@ function DefaultTextField({ name, attributes, methods }) {
       helperText={methods.errors[name] && methods.errors[name].message}
       // defaultValue={attributes.defaultValue || ''}
       fullWidth
+      InputLabelProps={{ shrink: true }}
       inputRef={methods.register(attributes)}
       {...attributes}
     />
