@@ -19,9 +19,9 @@ export default function App() {
         label: 'Nơi ở hiện tại',
         isSelectBox: true,
         values: ['Hà Nội', 'HCM'],
-        mapKey: k => k,
-        mapValue: k => k,
-        mapLabel: k => k,
+        // mapKey: k => k,
+        // mapValue: k => k,
+        // mapLabel: k => k,
         value: province,
         onChangeValue(value) {
           setProvince(value)
