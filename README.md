@@ -71,7 +71,17 @@ const SignupSchema = yup.object().shape({
     .required()
 })
 ```
-
+# API
+Default: type = 'text'
++ isSelectBox (bool): `render box lựa chọn các giá trị của trường values`
+  - values (array): `các giá trị` (`required`)
+  - value (any): `giá trị hiện tại của box`
+  - onChangeValue (func): `value => {/* tác vụ với giá trị mới (value)*/}`
++ isCheckBox (bool): `render check box`
+  - checked (bool): `giá trị hiện tại checked or unchecked`
+  - onChangeChecked (func): `checked => {/* tác vụ với giá trị mới (checked)*/}`
++ isSwitch (bool)
+  - như isCheckBox
 
 ## License
 
