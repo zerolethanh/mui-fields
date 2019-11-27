@@ -83,6 +83,9 @@ Default: type = 'text'
 + isSelectBox (bool): `render box lựa chọn các giá trị của trường values`
   - values (array): `các giá trị` (`required`)
   - value (any): `giá trị hiện tại của box`
+  - mapKey (func): `map giá trị cho key từ trường values`
+  - mapValue (func): `map giá trị cho value từ trường values`
+  - mapLable (func): `map giá trị cho label từ trường values`
   - onChangeValue (func): `value => {/* tác vụ với giá trị mới (value)*/}`
 + isCheckBox (bool): `render check box`
   - checked (bool): `giá trị hiện tại checked or unchecked`
