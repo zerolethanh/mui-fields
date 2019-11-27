@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import MenuItem from '@material-ui/core/MenuItem'
+import Switch from '@material-ui/core/Switch'
+
 import isFunction from 'lodash/isFunction'
 
 export default (fields, methods) => {
@@ -11,6 +13,7 @@ export default (fields, methods) => {
     // console.log(attributes)
     if (!attributes) return null
     if (attributes.isCheckBox) return CheckboxField({ name, attributes, methods })
+    if (attributes.isSwitch) return CheckboxField({ name, attributes, methods, isSwitch: true })
     if (attributes.isSelectBox) return SelectBoxField({ name, attributes, methods })
     return DefaultTextField({ name, attributes, methods })
   })
@@ -37,12 +40,13 @@ function DefaultTextField({ name, attributes, methods }) {
   )
 }
 
-function CheckboxField({ name, attributes, methods }) {
+function CheckboxField({ name, attributes, methods, isSwitch }) {
   const { onChangeChecked } = attributes
+  const Comp = isSwitch ? Switch : Checkbox
   return (
     <FormControlLabel
       control={
-        <Checkbox
+        <Comp
           name={name}
           inputRef={methods.register({ name })}
           onChange={(e, checked) => {
@@ -64,9 +68,9 @@ function SelectBoxField({ name, attributes, methods }) {
 
   const children = values.map((val, idx) => {
     return (
-      <MenuItem key={isFunction(mapKey) ? mapKey(val) : idx}
-                value={isFunction(mapValue) ? mapValue(val) : idx}>
-        {isFunction(mapLabel) ? mapLabel(val) : idx}
+      <MenuItem key={isFunction(mapKey) ? mapKey(val) : val}
+                value={isFunction(mapValue) ? mapValue(val) : val}>
+        {isFunction(mapLabel) ? mapLabel(val) : val}
       </MenuItem>
     )
   })
