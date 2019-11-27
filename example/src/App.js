@@ -4,7 +4,7 @@ import useForm from 'react-hook-form'
 import renderFields from 'mui-fields'
 
 export default function App() {
-  const [isActive, setIsActive] = useState(false)
+  const [isVietNamese, setIsVietNamese] = useState(false)
   const [province, setProvince] = useState(null)
   const [formValues, setFormValues] = useState(null)
   const methods = useForm()
@@ -23,17 +23,13 @@ export default function App() {
         // mapValue: k => k,
         // mapLabel: k => k,
         value: province,
-        onChangeValue(value) {
-          setProvince(value)
-        }
+        onChangeValue: setProvince
       },
       isVietNamese: {
         label: 'Là người Việt Nam',
         isCheckBox: true // để render checkbox field
-        , checked: isActive // trạng thái check or uncheck
-        , onChangeChecked: (checked) => {
-          setIsActive(checked)
-        }
+        , checked: isVietNamese // trạng thái check or uncheck
+        , onChangeChecked: setIsVietNamese
       }
     }, methods)
   }
