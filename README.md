@@ -85,7 +85,7 @@ Default: type = 'text'
   - value (any): `giá trị hiện tại của box`
   - mapKey (func): `map giá trị cho key từ trường values`
   - mapValue (func): `map giá trị cho value từ trường values`
-  - mapLable (func): `map giá trị cho label từ trường values`
+  - mapLabel (func): `map giá trị cho label từ trường values`
   - onChangeValue (func): `value => {/* tác vụ với giá trị mới (value)*/}`
 + isCheckBox (bool): `render check box`
   - checked (bool): `giá trị hiện tại checked or unchecked`
