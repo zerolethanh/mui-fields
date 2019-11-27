@@ -6,32 +6,37 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Switch from '@material-ui/core/Switch'
 
 import isFunction from 'lodash/isFunction'
+import { isCheckBox, isSelectBox, isSwitch } from './helpers'
 
 export default (fields, methods) => {
   return Object.keys(fields).map((name, idx) => {
     const attributes = fields[name]
     // console.log(attributes)
     if (!attributes) return null
-    if (attributes.isCheckBox) return CheckboxField({ name, attributes, methods })
-    if (attributes.isSwitch) return CheckboxField({ name, attributes, methods, isSwitch: true })
-    if (attributes.isSelectBox) return SelectBoxField({ name, attributes, methods })
+    if (isCheckBox(attributes)) {
+      return CheckboxField({
+        name,
+        attributes,
+        methods
+      })
+    }
+    if (isSwitch(attributes)) return CheckboxField({ name, attributes, methods, isSwitch: true })
+    if (isSelectBox(attributes)) return SelectBoxField({ name, attributes, methods })
     return DefaultTextField({ name, attributes, methods })
   })
 }
 
 function DefaultTextField({ name, attributes, methods }) {
-  // const methods = useFormContext() // retrieve all hook methods
   return (
     <TextField
       key={name}
       margin="dense"
-      id={attributes.id || name}
-      name={attributes.name || name}
+      id={name}
+      name={name}
       label={name}
       variant={'outlined'}
       error={Boolean(methods.errors[name])}
       helperText={methods.errors[name] && methods.errors[name].message}
-      // defaultValue={attributes.defaultValue || ''}
       fullWidth
       InputLabelProps={{ shrink: true }}
       inputRef={methods.register(attributes)}
