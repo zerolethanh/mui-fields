@@ -17,7 +17,7 @@ import renderFields from 'mui-fields'
 renderFields(settings, useFormMethods)
 ```
 
-> #### settings: {fieldName: {...attributes}}:
+> #### settings: {fieldName: attributes}:
 >> fieldName (string): Tên của trường.
 >
 >> attributes (object): thuộc tính của trường (extends tất cả thuộc tính của MUI TextField) // xem thêm https://material-ui.com/api/text-field/
