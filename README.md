@@ -32,20 +32,22 @@ import useForm from 'react-hook-form'
 import renderFields from 'mui-fields'
 
 export default function App() {
-  const [isVietNamese, setIsVietNamese] = useState(false)
-  const [province, setProvince] = useState(null)
+  const [isVietNamese, setIsVietNamese] = useState(true)
+  const [province, setProvince] = useState('Hà Nội')
   const [formValues, setFormValues] = useState(null)
-  const methods = useForm()
+  const methods = useForm({
+    defaultValues: { isVietNamese }
+  })
   const _renderFieds = () => {
     return renderFields({
       // MuiTextFieldsAttributes là các thuộc tính TextField của MUI,
       // xem thêm https://material-ui.com/api/text-field/
-      fullName: { label: 'Họ và tên', required: true },
+      fullName: { label: 'Họ và tên', required: true, autoFocus: true },
       cmnd: { label: 'Số cmnd/thẻ căn cước', type: 'number', fullWidth: false },
       dob: { label: 'Ngày sinh', type: 'date', defaultValue: '2010-01-20', fullWidth: false },
       province: {
         label: 'Nơi ở hiện tại',
-        isSelectBox: true,
+        select: true,
         values: ['Hà Nội', 'HCM'],
         // mapKey: k => k,
         // mapValue: k => k,
@@ -55,7 +57,7 @@ export default function App() {
       },
       isVietNamese: {
         label: 'Là người Việt Nam',
-        isCheckBox: true // để render checkbox field
+        checkbox: true // để render checkbox field
         , checked: isVietNamese // trạng thái check or uncheck
         , onChangeChecked: setIsVietNamese
       }
