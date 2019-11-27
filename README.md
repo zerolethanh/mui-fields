@@ -81,6 +81,7 @@ export default function App() {
 # API
 Default: type = 'text'
 + isSelectBox (bool): `render box lựa chọn các giá trị của trường values`
++ select (bool): `render box lựa chọn các giá trị của trường values`
   - values (array): `các giá trị` (`required`)
   - value (any): `giá trị hiện tại của box`
   - mapKey (func): `map giá trị cho key từ trường values`
@@ -88,9 +89,12 @@ Default: type = 'text'
   - mapLabel (func): `map giá trị cho label từ trường values`
   - onChangeValue (func): `value => {/* tác vụ với giá trị mới (value)*/}`
 + isCheckBox (bool): `render check box`
++ check (bool): `render check box`
++ checkbox (bool): `render check box`
   - checked (bool): `giá trị hiện tại checked or unchecked`
   - onChangeChecked (func): `checked => {/* tác vụ với giá trị mới (checked)*/}`
 + isSwitch (bool)
++ switch (bool)
   - như isCheckBox
 ## Xem thêm react-hook-form tại https://github.com/react-hook-form/react-hook-form
 ## License
