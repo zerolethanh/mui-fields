@@ -3,7 +3,7 @@
 >
 
 [![NPM](https://img.shields.io/npm/v/mui-fields.svg)](https://www.npmjs.com/package/mui-fields) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-![Ví dụ](https://img-classfunc.s3-ap-northeast-1.amazonaws.com/A%CC%89nh+chu%CC%A3p+Ma%CC%80n+hi%CC%80nh+2019-11-27+lu%CC%81c+12.17.14.png "Ví dụ")
+![Ví dụ](https://img-classfunc.s3-ap-northeast-1.amazonaws.com/A%CC%89nh+chu%CC%A3p+Ma%CC%80n+hi%CC%80nh+2019-12-06+lu%CC%81c+18.48.12.png "Ví dụ")
 
 ## Install
 
@@ -98,6 +98,7 @@ Default: type = 'text'
 + isSwitch (bool)
 + switch (bool)
   - như isCheckBox
++ isMultipleSelect (bool): `render multiple select`
 ## Xem thêm react-hook-form tại https://github.com/react-hook-form/react-hook-form
 ## License
 
