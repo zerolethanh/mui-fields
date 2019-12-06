@@ -10,6 +10,10 @@ export function isSelectBox(attributes) {
   return attributes.isSelectBox || attributes.select
 }
 
+export function isMultipleSelect(attributes) {
+  return attributes.isMultipleSelect || attributes.multipleSelect
+}
+
 export function lowcaseType(type) {
   if (!type) return
   if (typeof type === 'string') return
