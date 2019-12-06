@@ -1,6 +1,6 @@
 {
   "name": "mui-fields",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "MUI TextField kết hợp react-hook-form",
   "author": "thanh@classfunc.com",
   "license": "MIT",
