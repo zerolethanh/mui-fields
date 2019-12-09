@@ -111,6 +111,7 @@ Default: type = 'text'
 + switch (bool)
   - như isCheckBox
 + isMultipleSelect (bool): `render multiple select`
++ isMultipleSelectWithValueLabel (bool): `render multiple select with selections: {value, label}`
 ## Xem thêm react-hook-form tại https://github.com/react-hook-form/react-hook-form
 ## License
 
