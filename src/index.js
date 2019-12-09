@@ -216,17 +216,11 @@ function MultipleSelectWithValueName({ name, attributes, methods }) {
             }
           }}
           input={<Input id="select-multiple-chip"/>}
-          renderValue={selected => (
+          renderValue={() => (
             <div className={classes.chips}>
-              {selected.map(value => {
-                const dataSelect = selections.find(se => se.value === value)
-                if (dataSelect) {
-                  return (
-                    <Chip key={value} label={dataSelect.name} className={classes.chip}/>
-                  )
-                }
-                return null
-              })}
+              {methods.getValues()[name].map(select => (
+                <Chip key={select.value} label={select.label} className={classes.chip}/>
+              ))}
             </div>
           )}
           MenuProps={MenuProps}
@@ -236,7 +230,7 @@ function MultipleSelectWithValueName({ name, attributes, methods }) {
           {selections.map(sel => (
             <MenuItem key={sel.value} value={sel.value} style={getStyles(sel, selected, theme)}>
               <Checkbox checked={selected.indexOf(sel.value) > -1}/>
-              <ListItemText primary={sel.name}/>
+              <ListItemText primary={sel.label}/>
             </MenuItem>
           ))}
         </Select>

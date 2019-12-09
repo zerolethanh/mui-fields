@@ -43,19 +43,19 @@ export default function App() {
         selections: [
           {
             value: 'value1',
-            name: 'lập trình'
+            label: 'lập trình'
           },
           {
             value: 'value2',
-            name: 'đọc sách báo'
+            label: 'đọc sách báo'
           },
           {
             value: 'value3',
-            name: 'chụp ảnh'
+            label: 'chụp ảnh'
           },
           {
             value: 'value4',
-            name: 'du lịch'
+            label: 'du lịch'
           }
         ],
         value: soThich2,
