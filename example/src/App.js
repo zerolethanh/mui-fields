@@ -8,6 +8,7 @@ export default function App() {
   const [province, setProvince] = useState('Hà Nội')
   const [formValues, setFormValues] = useState(null)
   const [soThich, setSoThich] = useState([])
+  const [soThich2, setSoThich2] = useState([])
   const methods = useForm({
     defaultValues: { isVietNamese }
   })
@@ -36,12 +37,40 @@ export default function App() {
         onChangeValue: setSoThich,
         fullWidth: true
       },
+      sothich2: {
+        isMultipleSelectWithValueName: true,
+        label: 'Sở thích version 2',
+        selections: [
+          {
+            value: 'value1',
+            name: 'lập trình'
+          },
+          {
+            value: 'value2',
+            name: 'đọc sách báo'
+          },
+          {
+            value: 'value3',
+            name: 'chụp ảnh'
+          },
+          {
+            value: 'value4',
+            name: 'du lịch'
+          }
+        ],
+        value: soThich2,
+        onChangeValue: setSoThich2,
+        fullWidth: true
+      },
       isVietNamese: {
         label: 'Là người Việt Nam',
         checkbox: true // để render checkbox field
-        , checked: isVietNamese // trạng thái check or uncheck
-        , onChangeChecked: setIsVietNamese
-        , fullWidth: true
+        ,
+        checked: isVietNamese // trạng thái check or uncheck
+        ,
+        onChangeChecked: setIsVietNamese
+        ,
+        fullWidth: true
       },
 
     }, methods)

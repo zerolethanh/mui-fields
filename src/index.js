@@ -11,9 +11,10 @@ import Input from '@material-ui/core/Input'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Chip from '@material-ui/core/Chip'
 import FormGroup from '@material-ui/core/FormGroup'
+import ListItemText from '@material-ui/core/ListItemText'
 
 import isFunction from 'lodash/isFunction'
-import { isCheckBox, isMultipleSelect, isSelectBox, isSwitch } from './helpers'
+import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueName, isSelectBox, isSwitch } from './helpers'
 
 export default (fields, methods) => {
   return Object.keys(fields).map((name, idx) => {
@@ -27,10 +28,40 @@ export default (fields, methods) => {
         methods
       })
     }
-    if (isSwitch(attributes)) return CheckboxField({ name, attributes, methods, isSwitch: true })
-    if (isSelectBox(attributes)) return SelectBoxField({ name, attributes, methods })
-    if (isMultipleSelect(attributes)) return MultipleSelect({ name, attributes, methods })
-    return DefaultTextField({ name, attributes, methods })
+    if (isSwitch(attributes)) {
+      return CheckboxField({
+        name,
+        attributes,
+        methods,
+        isSwitch: true
+      })
+    }
+    if (isSelectBox(attributes)) {
+      return SelectBoxField({
+        name,
+        attributes,
+        methods
+      })
+    }
+    if (isMultipleSelect(attributes)) {
+      return MultipleSelect({
+        name,
+        attributes,
+        methods
+      })
+    }
+    if (isMultipleSelectWithValueName(attributes)) {
+      return MultipleSelectWithValueName({
+        name,
+        attributes,
+        methods
+      })
+    }
+    return DefaultTextField({
+      name,
+      attributes,
+      methods
+    })
   })
 }
 
@@ -105,7 +136,11 @@ function SelectBoxField({ name, attributes, methods }) {
     }
   }
 
-  return DefaultTextField({ name, attributes: newAttributes, methods })
+  return DefaultTextField({
+    name,
+    attributes: newAttributes,
+    methods
+  })
 
 }
 
@@ -146,6 +181,62 @@ function MultipleSelect({ name, attributes, methods }) {
           {selections.map(sel => (
             <MenuItem key={sel} value={sel} style={getStyles(sel, selected, theme)}>
               {sel}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Wrap>
+  )
+}
+
+function MultipleSelectWithValueName({ name, attributes, methods }) {
+  const classes = useStyles()
+  const theme = useTheme()
+  const Wrap = attributes.fullWidth ? FormGroup : React.Fragment
+
+  const { selections, value: selected, onChangeValue } = attributes
+
+  return (
+    <Wrap>
+      <FormControl className={classes.formControl} fullWidth={attributes.fullWidth}>
+        <InputLabel id={`${name}-label`}>{attributes.label || name}</InputLabel>
+        <Select
+          labelId={`${name}-label`}
+          id={name}
+          multiple
+          onChange={e => {
+            const sel = e.target.value
+            const newSel = sel.map(s => {
+              const dataSelect = selections.find(se => se.value === s)
+              return dataSelect
+            })
+            methods.setValue(name, newSel)
+            if (isFunction(onChangeValue)) {
+              onChangeValue(sel)
+            }
+          }}
+          input={<Input id="select-multiple-chip"/>}
+          renderValue={selected => (
+            <div className={classes.chips}>
+              {selected.map(value => {
+                const dataSelect = selections.find(se => se.value === value)
+                if (dataSelect) {
+                  return (
+                    <Chip key={value} label={dataSelect.name} className={classes.chip}/>
+                  )
+                }
+                return null
+              })}
+            </div>
+          )}
+          MenuProps={MenuProps}
+          inputRef={methods.register({ name })}
+          {...attributes}
+        >
+          {selections.map(sel => (
+            <MenuItem key={sel.value} value={sel.value} style={getStyles(sel, selected, theme)}>
+              <Checkbox checked={selected.indexOf(sel.value) > -1}/>
+              <ListItemText primary={sel.name}/>
             </MenuItem>
           ))}
         </Select>
