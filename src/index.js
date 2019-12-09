@@ -14,7 +14,8 @@ import FormGroup from '@material-ui/core/FormGroup'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import isFunction from 'lodash/isFunction'
-import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueName, isSelectBox, isSwitch } from './helpers'
+import find from 'lodash/find'
+import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueLabel, isSelectBox, isSwitch } from './helpers'
 
 export default (fields, methods) => {
   return Object.keys(fields).map((name, idx) => {
@@ -50,8 +51,8 @@ export default (fields, methods) => {
         methods
       })
     }
-    if (isMultipleSelectWithValueName(attributes)) {
-      return MultipleSelectWithValueName({
+    if (isMultipleSelectWithValueLabel(attributes)) {
+      return MultipleSelectWithValueLabel({
         name,
         attributes,
         methods
@@ -189,7 +190,7 @@ function MultipleSelect({ name, attributes, methods }) {
   )
 }
 
-function MultipleSelectWithValueName({ name, attributes, methods }) {
+function MultipleSelectWithValueLabel({ name, attributes, methods }) {
   const classes = useStyles()
   const theme = useTheme()
   const Wrap = attributes.fullWidth ? FormGroup : React.Fragment
@@ -205,21 +206,16 @@ function MultipleSelectWithValueName({ name, attributes, methods }) {
           id={name}
           multiple
           onChange={e => {
-            const sel = e.target.value
-            const newSel = sel.map(s => {
-              const dataSelect = selections.find(se => se.value === s)
-              return dataSelect
-            })
-            methods.setValue(name, newSel)
+            const value = e.target.value
+            methods.setValue(name, value)
             if (isFunction(onChangeValue)) {
-              onChangeValue(sel)
+              onChangeValue(value)
             }
           }}
-          input={<Input id="select-multiple-chip"/>}
           renderValue={() => (
             <div className={classes.chips}>
-              {methods.getValues()[name].map(select => (
-                <Chip key={select.value} label={select.label} className={classes.chip}/>
+              {selected.map(value => (
+                <Chip key={value} label={find(selections, { value }).label} className={classes.chip}/>
               ))}
             </div>
           )}

@@ -14,8 +14,8 @@ export function isMultipleSelect(attributes) {
   return attributes.isMultipleSelect || attributes.multipleSelect
 }
 
-export function isMultipleSelectWithValueName(attributes) {
-  return attributes.isMultipleSelectWithValueName || attributes.isMultipleSelectWithValueName
+export function isMultipleSelectWithValueLabel(attributes) {
+  return attributes.isMultipleSelectWithValueLabel || attributes.isMultipleSelectWithValueLabel
 }
 
 export function lowcaseType(type) {

@@ -38,7 +38,7 @@ export default function App() {
         fullWidth: true
       },
       sothich2: {
-        isMultipleSelectWithValueName: true,
+        isMultipleSelectWithValueLabel: true,
         label: 'Sở thích version 2',
         selections: [
           {
