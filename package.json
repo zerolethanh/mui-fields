@@ -9,6 +9,14 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
+  "keywords": [
+    "react",
+    "mui",
+    "material-ui",
+    "useForm",
+    "react-hook-form",
+    "classfunc"
+  ],
   "engines": {
     "node": ">=8",
     "npm": ">=5"
