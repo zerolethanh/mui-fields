@@ -58,12 +58,8 @@ export default function App() {
       isVietNamese: {
         label: 'Là người Việt Nam',
         checkbox: true // để render checkbox field
-        ,
-        checked: isVietNamese // trạng thái check or uncheck
-        ,
-        onChangeChecked: setIsVietNamese
-        ,
-        fullWidth: true
+        , checked: true
+        , fullWidth: true
       },
 
     }, methods)
