@@ -7,8 +7,6 @@ export default function App() {
   const [isVietNamese, setIsVietNamese] = useState(true)
   const [province, setProvince] = useState('Hà Nội')
   const [formValues, setFormValues] = useState(null)
-  const [soThich, setSoThich] = useState([])
-  const [soThich2, setSoThich2] = useState([])
   const methods = useForm({
     defaultValues: { isVietNamese }
   })
@@ -33,34 +31,32 @@ export default function App() {
         isMultipleSelect: true,
         label: 'Sở thích',
         selections: ['lập trình', 'đọc sách báo', 'chụp ảnh', 'du lịch'],
-        value: soThich,
-        onChangeValue: setSoThich,
         fullWidth: true
       },
-      sothich2: {
-        isMultipleSelectWithValueLabel: true,
-        label: 'Sở thích version 2',
+      dev: {
+        isMultipleSelect: true,
+        label: 'Dev',
         selections: [
           {
-            value: 'value1',
-            label: 'lập trình'
+            value: 'web',
+            label: 'Web'
           },
           {
-            value: 'value2',
-            label: 'đọc sách báo'
+            value: 'mobile-app',
+            label: 'Mobile App'
           },
           {
-            value: 'value3',
-            label: 'chụp ảnh'
+            value: 'AI',
+            label: 'AI'
           },
           {
-            value: 'value4',
-            label: 'du lịch'
+            value: 'block-chain',
+            label: 'Block Chain'
           }
         ],
-        value: soThich2,
-        onChangeValue: setSoThich2,
-        fullWidth: true
+        mapKey: sel => sel.value,
+        mapValue: sel => sel.value,
+        mapLabel: sel => sel.label
       },
       isVietNamese: {
         label: 'Là người Việt Nam',
