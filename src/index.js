@@ -12,45 +12,43 @@ export default (fields, methods) => {
     // console.log(attributes)
     if (!attributes) return null
     if (isCheckBox(attributes)) {
-      return CheckboxField({
-        name,
-        attributes,
-        methods
-      })
+      return <CheckboxField
+        name={name}
+        attributes={attributes}
+        methods={methods}/>
     }
     if (isSwitch(attributes)) {
-      return CheckboxField({
-        name,
-        attributes,
-        methods,
-        isSwitch: true
-      })
+      return <CheckboxField
+        name={name}
+        attributes={attributes}
+        methods={methods}
+        isSwitch={true}/>
     }
     if (isSelectBox(attributes)) {
-      return SelectBoxField({
-        name,
-        attributes,
-        methods
-      })
+      return <SelectBoxField
+        name={name}
+        attributes={attributes}
+        methods={methods}
+      />
     }
     if (isMultipleSelect(attributes)) {
-      return MultipleSelect({
-        name,
-        attributes,
-        methods
-      })
+      return <MultipleSelect
+        name={name}
+        attributes={attributes}
+        methods={methods}
+      />
     }
     if (isMultipleSelectWithValueLabel(attributes)) {
-      return MultipleSelectWithValueLabel({
-        name,
-        attributes,
-        methods
-      })
+      return <MultipleSelectWithValueLabel
+        name={name}
+        attributes={attributes}
+        methods={methods}
+      />
     }
-    return DefaultTextField({
-      name,
-      attributes,
-      methods
-    })
+    return <DefaultTextField
+      name={name}
+      attributes={attributes}
+      methods={methods}
+    />
   })
 }
