@@ -4,11 +4,8 @@ import useForm from 'react-hook-form'
 import renderFields from 'mui-fields'
 
 export default function App() {
-  const [isVietNamese, setIsVietNamese] = useState(true)
   const [formValues, setFormValues] = useState(null)
-  const methods = useForm({
-    defaultValues: { isVietNamese }
-  })
+  const methods = useForm()
   const _renderFieds = () => {
     return renderFields({
       // MuiTextFieldsAttributes là các thuộc tính TextField của MUI,
