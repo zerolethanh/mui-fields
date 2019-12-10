@@ -5,7 +5,6 @@ import renderFields from 'mui-fields'
 
 export default function App() {
   const [isVietNamese, setIsVietNamese] = useState(true)
-  const [province, setProvince] = useState('Hà Nội')
   const [formValues, setFormValues] = useState(null)
   const methods = useForm({
     defaultValues: { isVietNamese }
@@ -14,18 +13,16 @@ export default function App() {
     return renderFields({
       // MuiTextFieldsAttributes là các thuộc tính TextField của MUI,
       // xem thêm https://material-ui.com/api/text-field/
-      fullName: { label: 'Họ và tên', required: true, autoFocus: true },
+      fullName: { label: 'Họ và tên', value: 'Lê Thành', required: true, autoFocus: true },
       cmnd: { label: 'Số cmnd/thẻ căn cước', type: 'number', fullWidth: false },
       dob: { label: 'Ngày sinh', type: 'date', defaultValue: '2010-01-20', fullWidth: false },
       province: {
         label: 'Nơi ở hiện tại',
         select: true,
-        values: ['Hà Nội', 'HCM'],
-        // mapKey: k => k,
-        // mapValue: k => k,
-        // mapLabel: k => k,
-        value: province,
-        onChangeValue: setProvince
+        selections: [{ code: 'HAN', name: 'Hà Nội' }, { code: 'SGN', name: 'HCM' }],
+        mapKey: opt => opt.code,
+        mapValue: opt => opt.code,
+        mapLabel: opt => opt.name,
       },
       sothich: {
         isMultipleSelect: true,
