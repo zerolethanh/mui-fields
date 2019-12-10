@@ -9,6 +9,8 @@
 
 ```bash
 npm install --save mui-fields
+or
+yarn add mui-fields
 ```
 
 ## Usage
@@ -25,50 +27,67 @@ renderFields(settings, useFormMethods)
 > #### useFormMethods:
 > các methods của useForm // xem ví dụ bên dưới
 
-```jsx
+```jsx harmony
+
 import React, { useState } from 'react'
 import useForm from 'react-hook-form'
 
 import renderFields from 'mui-fields'
 
 export default function App() {
-  const [isVietNamese, setIsVietNamese] = useState(true)
-  const [province, setProvince] = useState('Hà Nội')
   const [formValues, setFormValues] = useState(null)
-  const [soThich, setSoThich] = useState([])
-  const methods = useForm({
-    defaultValues: { isVietNamese }
-  })
+  const methods = useForm()
+
   const _renderFieds = () => {
     return renderFields({
       // MuiTextFieldsAttributes là các thuộc tính TextField của MUI,
       // xem thêm https://material-ui.com/api/text-field/
-      fullName: { label: 'Họ và tên', required: true, autoFocus: true },
+      fullName: { label: 'Họ và tên', value: 'Lê Thành', required: true, autoFocus: true },
       cmnd: { label: 'Số cmnd/thẻ căn cước', type: 'number', fullWidth: false },
       dob: { label: 'Ngày sinh', type: 'date', defaultValue: '2010-01-20', fullWidth: false },
       province: {
         label: 'Nơi ở hiện tại',
         select: true,
-        values: ['Hà Nội', 'HCM'],
-        // mapKey: k => k,
-        // mapValue: k => k,
-        // mapLabel: k => k,
-        value: province,
-        onChangeValue: setProvince
+        selections: [{ code: 'HAN', name: 'Hà Nội' }, { code: 'SGN', name: 'HCM' }],
+        mapKey: opt => opt.code,
+        mapValue: opt => opt.code,
+        mapLabel: opt => opt.name,
       },
       sothich: {
         isMultipleSelect: true,
         label: 'Sở thích',
         selections: ['lập trình', 'đọc sách báo', 'chụp ảnh', 'du lịch'],
-        value: soThich,
-        onChangeValue: setSoThich,
         fullWidth: true
+      },
+      dev: {
+        isMultipleSelect: true,
+        label: 'Dev',
+        selections: [
+          {
+            value: 'web',
+            label: 'Web'
+          },
+          {
+            value: 'mobile-app',
+            label: 'Mobile App'
+          },
+          {
+            value: 'AI',
+            label: 'AI'
+          },
+          {
+            value: 'block-chain',
+            label: 'Block Chain'
+          }
+        ],
+        mapKey: sel => sel.value,
+        mapValue: sel => sel.value,
+        mapLabel: sel => sel.label
       },
       isVietNamese: {
         label: 'Là người Việt Nam',
         checkbox: true // để render checkbox field
-        , checked: isVietNamese // trạng thái check or uncheck
-        , onChangeChecked: setIsVietNamese
+        , checked: true
         , fullWidth: true
       },
 
@@ -91,6 +110,7 @@ export default function App() {
   )
 }
 
+
 ```
 # API
 Default: type = 'text'
@@ -111,7 +131,6 @@ Default: type = 'text'
 + switch (bool)
   - như isCheckBox
 + isMultipleSelect (bool): `render multiple select`
-+ isMultipleSelectWithValueLabel (bool): `render multiple select with selections: {value, label}`
 ## Xem thêm react-hook-form tại https://github.com/react-hook-form/react-hook-form
 ## License
 
