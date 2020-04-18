@@ -2,6 +2,8 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 
 export default function CFTextField({ name, attributes, methods }) {
+  const defaultValue = attributes.value || attributes.defaultValue
+  delete attributes.value
   return (
     <TextField
       key={name}
@@ -16,6 +18,7 @@ export default function CFTextField({ name, attributes, methods }) {
       InputLabelProps={{ shrink: true }}
       inputRef={methods.register(attributes)}
       {...attributes}
+      defaultValue={defaultValue}
     />
   )
 }
