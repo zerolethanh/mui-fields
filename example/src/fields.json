@@ -5,6 +5,20 @@
     "required": true,
     "autoFocus": true
   },
+  "gender": {
+    "radios": true,
+    "title": "giới tính",
+    "options": [
+      {
+        "value": "m",
+        "label": "nam"
+      },
+      {
+        "value": "f",
+        "label": "nữ"
+      }
+    ]
+  },
   "cmnd": {
     "label": "Số cmnd/thẻ căn cước",
     "type": "number",
