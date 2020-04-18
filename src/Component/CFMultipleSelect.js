@@ -9,35 +9,20 @@ import isFunction from 'lodash/isFunction'
 import { makeStyles } from '@material-ui/core/styles'
 import Checkbox from '@material-ui/core/Checkbox'
 import ListItemText from '@material-ui/core/ListItemText'
+import selectUtils from '../utils/select'
 
 export default function CFMultipleSelect({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || [])
   const classes = useStyles()
   const Wrap = attributes.fullWidth ? FormGroup : React.Fragment
-  const { selections, onChangeValue, mapKey, mapValue, mapLabel } = attributes
+  const { selections, onChangeValue } = attributes
 
   const checkSelected = val => {
     if (!value) return false
     return value.includes(val)
   }
-  const getKey = (opt) => {
-    return isFunction(mapKey) ?
-      mapKey(opt)
-      : mapValue
-        ?
-        mapValue(opt)
-        : opt
-  }
-  const getValue = (opt) => {
-    return isFunction(mapValue) ?
-      mapValue(opt)
-      : opt
-  }
-  const getLabel = (opt) => {
-    return isFunction(mapLabel) ?
-      mapLabel(opt)
-      : opt
-  }
+  const { getKey, getValue, getLabel } = selectUtils(attributes)
+
   return (
     <Wrap>
       <FormControl

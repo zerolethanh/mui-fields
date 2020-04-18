@@ -2,30 +2,14 @@ import CFTextField from './CFTextField'
 import React, { useState } from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
 import isFunction from 'lodash/isFunction'
+import selectUtils from './../utils/select'
 
 export default function CFSelectBox({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || '')
 
-  let { mapKey, mapValue, mapLabel, values, selections, onChangeValue } = attributes
+  let { values, selections, onChangeValue } = attributes
+  const { getKey, getValue, getLabel } = selectUtils(attributes)
 
-  const getKey = (opt) => {
-    return isFunction(mapKey) ?
-      mapKey(opt)
-      : mapValue
-        ?
-        mapValue(opt)
-        : opt
-  }
-  const getValue = (opt) => {
-    return isFunction(mapValue) ?
-      mapValue(opt)
-      : opt
-  }
-  const getLabel = (opt) => {
-    return isFunction(mapLabel) ?
-      mapLabel(opt)
-      : opt
-  }
   const children = (values || selections).map((opt) => {
     return (
       <MenuItem key={getKey(opt)}
