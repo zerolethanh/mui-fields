@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Checkbox from '@material-ui/core/Checkbox'
 import ListItemText from '@material-ui/core/ListItemText'
 
-export default function MultipleSelect({ name, attributes, methods }) {
+export default function CFMultipleSelect({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || [])
   const classes = useStyles()
   const Wrap = attributes.fullWidth ? FormGroup : React.Fragment

@@ -21,7 +21,7 @@ const MenuProps = {
   },
 }
 
-export default function MultipleSelectWithValueLabel({ name, attributes, methods }) {
+export default function CFMultipleSelectWithValueLabel({ name, attributes, methods }) {
   const classes = useStyles()
   // const theme = useTheme()
   const Wrap = attributes.fullWidth ? FormGroup : React.Fragment

@@ -1,9 +1,9 @@
-import DefaultTextField from './DefaultTextField'
+import CFTextField from './CFTextField'
 import React, { useState } from 'react'
 import MenuItem from '@material-ui/core/MenuItem'
 import isFunction from 'lodash/isFunction'
 
-export default function SelectBoxField({ name, attributes, methods }) {
+export default function CFSelectBox({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || '')
 
   let { mapKey, mapValue, mapLabel, values, selections, onChangeValue } = attributes
@@ -51,7 +51,7 @@ export default function SelectBoxField({ name, attributes, methods }) {
     }
   }
 
-  return DefaultTextField({
+  return CFTextField({
     name,
     attributes: newAttributes,
     methods

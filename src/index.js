@@ -1,9 +1,9 @@
 import React from 'react'
-import DefaultTextField from './Component/DefaultTextField'
-import CheckboxField from './Component/CheckboxField'
-import SelectBoxField from './Component/SelectBoxField'
-import MultipleSelect from './Component/MultipleSelect'
-import MultipleSelectWithValueLabel from './Component/MultipleSelectWithValueLabel'
+import CFTextField from './Component/CFTextField'
+import CFCheckbox from './Component/CFCheckbox'
+import CFSelectBox from './Component/CFSelectBox'
+import CFMultipleSelect from './Component/CFMultipleSelect'
+import CFMultipleSelectWithValueLabel from './Component/CFMultipleSelectWithValueLabel'
 import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueLabel, isSelectBox, isSwitch } from './helpers'
 
 export default (fields, methods) => {
@@ -12,40 +12,46 @@ export default (fields, methods) => {
     // console.log(attributes)
     if (!attributes) return null
     if (isCheckBox(attributes)) {
-      return <CheckboxField
+      return <CFCheckbox
+        key={name}
         name={name}
         attributes={attributes}
         methods={methods}/>
     }
     if (isSwitch(attributes)) {
-      return <CheckboxField
+      return <CFCheckbox
+        key={name}
         name={name}
         attributes={attributes}
         methods={methods}
         isSwitch={true}/>
     }
     if (isSelectBox(attributes)) {
-      return <SelectBoxField
+      return <CFSelectBox
+        key={name}
         name={name}
         attributes={attributes}
         methods={methods}
       />
     }
     if (isMultipleSelect(attributes)) {
-      return <MultipleSelect
+      return <CFMultipleSelect
+        key={name}
         name={name}
         attributes={attributes}
         methods={methods}
       />
     }
     if (isMultipleSelectWithValueLabel(attributes)) {
-      return <MultipleSelectWithValueLabel
+      return <CFMultipleSelectWithValueLabel
+        key={name}
         name={name}
         attributes={attributes}
         methods={methods}
       />
     }
-    return <DefaultTextField
+    return <CFTextField
+      key={name}
       name={name}
       attributes={attributes}
       methods={methods}

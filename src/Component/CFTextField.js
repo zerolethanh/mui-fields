@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 
-export default function DefaultTextField({ name, attributes, methods }) {
+export default function CFTextField({ name, attributes, methods }) {
   return (
     <TextField
       key={name}

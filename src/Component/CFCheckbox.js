@@ -5,7 +5,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormGroup from '@material-ui/core/FormGroup'
 import isFunction from 'lodash/isFunction'
 
-export default function CheckboxField({ name, attributes, methods, isSwitch }) {
+export default function CFCheckbox({ name, attributes, methods, isSwitch }) {
   const [checked, setChecked] = useState(attributes.defaultValue || attributes.value || attributes.checked || false)
   useEffect(() => {
     methods.setValue(name, checked)
