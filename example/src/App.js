@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import useForm from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-import renderFields from 'mui-fields'
+import r from 'mui-fields'
 
 export default function App() {
   const [formValues, setFormValues] = useState(null)
   const methods = useForm()
   const _renderFieds = () => {
-    return renderFields({
+    return r({
       // MuiTextFieldsAttributes là các thuộc tính TextField của MUI,
       // xem thêm https://material-ui.com/api/text-field/
       fullName: { label: 'Họ và tên', value: 'Lê Thành', required: true, autoFocus: true },
