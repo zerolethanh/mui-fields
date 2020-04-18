@@ -9,52 +9,29 @@ import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueLabel, isSelectB
 export default (fields, methods) => {
   return Object.keys(fields).map((name, idx) => {
     const attributes = fields[name]
-    // console.log(attributes)
     if (!attributes) return null
+    let Com
+    let otherProps = {}
     if (isCheckBox(attributes)) {
-      return <CFCheckbox
-        key={name}
-        name={name}
-        attributes={attributes}
-        methods={methods}/>
+      Com = CFCheckbox
+    } else if (isSwitch(attributes)) {
+      Com = CFCheckbox
+      otherProps.isSwitch = true
+    } else if (isSelectBox(attributes)) {
+      Com = CFSelectBox
+    } else if (isMultipleSelect(attributes)) {
+      Com = CFMultipleSelect
+    } else if (isMultipleSelectWithValueLabel(attributes)) {
+      Com = CFMultipleSelectWithValueLabel
+    } else {
+      Com = CFTextField
     }
-    if (isSwitch(attributes)) {
-      return <CFCheckbox
-        key={name}
-        name={name}
-        attributes={attributes}
-        methods={methods}
-        isSwitch={true}/>
-    }
-    if (isSelectBox(attributes)) {
-      return <CFSelectBox
-        key={name}
-        name={name}
-        attributes={attributes}
-        methods={methods}
-      />
-    }
-    if (isMultipleSelect(attributes)) {
-      return <CFMultipleSelect
-        key={name}
-        name={name}
-        attributes={attributes}
-        methods={methods}
-      />
-    }
-    if (isMultipleSelectWithValueLabel(attributes)) {
-      return <CFMultipleSelectWithValueLabel
-        key={name}
-        name={name}
-        attributes={attributes}
-        methods={methods}
-      />
-    }
-    return <CFTextField
+    return <Com
       key={name}
       name={name}
       attributes={attributes}
       methods={methods}
+      {...otherProps}
     />
   })
 }
