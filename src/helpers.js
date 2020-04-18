@@ -18,6 +18,10 @@ export function isMultipleSelectWithValueLabel(attributes) {
   return attributes.isMultipleSelectWithValueLabel || attributes.isMultipleSelectWithValueLabel
 }
 
+export function isRadios(attrs) {
+  return attrs.radio || attrs.radios
+}
+
 export function lowcaseType(type) {
   if (!type) return
   if (typeof type === 'string') return

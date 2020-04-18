@@ -4,7 +4,16 @@ import CFCheckbox from './Component/CFCheckbox'
 import CFSelectBox from './Component/CFSelectBox'
 import CFMultipleSelect from './Component/CFMultipleSelect'
 import CFMultipleSelectWithValueLabel from './Component/CFMultipleSelectWithValueLabel'
-import { isCheckBox, isMultipleSelect, isMultipleSelectWithValueLabel, isSelectBox, isSwitch } from './helpers'
+import CFRadios from './Component/CFRadios'
+
+import {
+  isCheckBox,
+  isMultipleSelect,
+  isMultipleSelectWithValueLabel,
+  isRadios,
+  isSelectBox,
+  isSwitch
+} from './helpers'
 
 export default (fields, methods) => {
   return Object.keys(fields).map((name, idx) => {
@@ -23,6 +32,8 @@ export default (fields, methods) => {
       Com = CFMultipleSelect
     } else if (isMultipleSelectWithValueLabel(attributes)) {
       Com = CFMultipleSelectWithValueLabel
+    } else if (isRadios(attributes)) {
+      Com = CFRadios
     } else {
       Com = CFTextField
     }
