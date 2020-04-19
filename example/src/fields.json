@@ -42,58 +42,67 @@
       }
     }
   },
-  "province": {
-    "label": "Nơi ở hiện tại",
-    "select": true,
-    "selections": [
-      {
-        "code": "HAN",
-        "name": "Hà Nội"
+  "tinhSothichDev": {
+    "grid": true,
+    "direction": "row",
+    "spacing": 1,
+    "items": {
+      "province": {
+        "label": "Nơi ở hiện tại",
+        "select": true,
+        "selections": [
+          {
+            "code": "HAN",
+            "name": "Hà Nội"
+          },
+          {
+            "code": "SGN",
+            "name": "HCM"
+          }
+        ],
+        "keyPath": "code",
+        "valuePath": "code",
+        "labelPath": "name",
+        "style": {
+          "width": 200
+        }
       },
-      {
-        "code": "SGN",
-        "name": "HCM"
+      "sothich": {
+        "isMultipleSelect": true,
+        "label": "Sở thích",
+        "selections": [
+          "lập trình",
+          "đọc sách báo",
+          "chụp ảnh",
+          "du lịch"
+        ]
+      },
+      "dev": {
+        "isMultipleSelect": true,
+        "label": "Dev",
+        "selections": [
+          {
+            "value": "web",
+            "label": "Web"
+          },
+          {
+            "value": "mobile-app",
+            "label": "Mobile App"
+          },
+          {
+            "value": "AI",
+            "label": "AI"
+          },
+          {
+            "value": "block-chain",
+            "label": "Block Chain"
+          }
+        ],
+        "keyPath": "value",
+        "valuePath": "value",
+        "labelPath": "label"
       }
-    ],
-    "keyPath": "code",
-    "valuePath": "code",
-    "labelPath": "name"
-  },
-  "sothich": {
-    "isMultipleSelect": true,
-    "label": "Sở thích",
-    "selections": [
-      "lập trình",
-      "đọc sách báo",
-      "chụp ảnh",
-      "du lịch"
-    ],
-    "fullWidth": true
-  },
-  "dev": {
-    "isMultipleSelect": true,
-    "label": "Dev",
-    "selections": [
-      {
-        "value": "web",
-        "label": "Web"
-      },
-      {
-        "value": "mobile-app",
-        "label": "Mobile App"
-      },
-      {
-        "value": "AI",
-        "label": "AI"
-      },
-      {
-        "value": "block-chain",
-        "label": "Block Chain"
-      }
-    ],
-    "keyPath": "value",
-    "valuePath": "value",
-    "labelPath": "label"
+    }
   },
   "isVietNamese": {
     "label": "Là người Việt Nam",
