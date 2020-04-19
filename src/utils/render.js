@@ -1,16 +1,8 @@
-import {
-  isCheckBox,
-  isGrid,
-  isMultipleSelect,
-  isMultipleSelectWithValueLabel,
-  isRadios,
-  isSelectBox,
-  isSwitch
-} from './helpers'
+import { isCheckBox, isGrid, isMultipleSelect, isRadios, isSelectBox, isSwitch } from './helpers'
 import CFCheckbox from '../Component/CFCheckbox'
 import CFSelectBox from '../Component/CFSelectBox'
 import CFMultipleSelect from '../Component/CFMultipleSelect'
-import CFMultipleSelectWithValueLabel from '../Component/CFMultipleSelectWithValueLabel'
+// import CFMultipleSelectWithValueLabel from '../Component/CFMultipleSelectWithValueLabel'
 import CFRadios from '../Component/CFRadios'
 import CFTextField from '../Component/CFTextField'
 import React from 'react'
@@ -36,8 +28,8 @@ export default function render(fields, methods) {
       Com = CFSelectBox
     } else if (isMultipleSelect(attributes)) {
       Com = CFMultipleSelect
-    } else if (isMultipleSelectWithValueLabel(attributes)) {
-      Com = CFMultipleSelectWithValueLabel
+      // } else if (isMultipleSelectWithValueLabel(attributes)) {
+      //   Com = CFMultipleSelectWithValueLabel
     } else if (isRadios(attributes)) {
       Com = CFRadios
     } else {
