@@ -11,11 +11,8 @@ export default function App() {
     setFormValues(data)
   }
   return (
-    <form onSubmit={methods.handleSubmit(_onSubmit)} style={{ margin: 20 }}>
+    <form onSubmit={methods.handleSubmit(_onSubmit)}>
       {r(fields, methods)}
-      <div>
-        <button type={'submit'}>Submit</button>
-      </div>
       {
         formValues && <pre>{JSON.stringify(formValues, null, 2)}</pre>
       }

@@ -88,5 +88,8 @@
     "checkbox": true,
     "checked": true,
     "fullWidth": true
+  },
+  "submit": {
+    "type": "submit"
   }
 }

@@ -10,7 +10,7 @@ export default function CFTextField({ name, attributes, methods }) {
       margin="dense"
       id={name}
       name={name}
-      label={name}
+      // label={name}
       variant={'outlined'}
       error={Boolean(methods.errors[name])}
       helperText={methods.errors[name] && methods.errors[name].message}
