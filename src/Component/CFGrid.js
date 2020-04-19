@@ -8,13 +8,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }))
-let containerIdx = 0
+
 export default function CFGrid({ name, attributes: attrs, methods }) {
-  ++containerIdx
+
   const classes = useStyles()
   const { direction = 'column', justify, spacing, alignItems, style, items } = attrs
   const getKey = (name, prefix) => {
-    return `${prefix}${name}_${containerIdx}`
+    return `${prefix}${name}`
   }
   return (
     <Grid container
