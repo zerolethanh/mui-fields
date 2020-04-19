@@ -4,7 +4,6 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import Chip from '@material-ui/core/Chip'
-import FormGroup from '@material-ui/core/FormGroup'
 import isFunction from 'lodash/isFunction'
 import { makeStyles } from '@material-ui/core/styles'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -14,8 +13,8 @@ import selectUtils from '../utils/select'
 export default function CFMultipleSelect({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || [])
   const classes = useStyles()
-  const Wrap = attributes.fullWidth ? FormGroup : React.Fragment
-  const { selections, onChangeValue } = attributes
+  // const Wrap = attributes.fullWidth ? FormGroup : React.Fragment
+  const { selections, items, onChangeValue } = attributes
 
   const checkSelected = val => {
     if (!value) return false
@@ -24,56 +23,56 @@ export default function CFMultipleSelect({ name, attributes, methods }) {
   const { getKey, getValue, getLabel } = selectUtils(attributes)
 
   return (
-    <Wrap>
-      <FormControl
-        className={classes.formControl}
-        // variant="outlined"
-        fullWidth={attributes.fullWidth}>
-        <InputLabel id={`${name}-label`}>{attributes.label || name}</InputLabel>
-        <Select
-          labelId={`${name}-label`}
-          id={name}
-          multiple
-          onChange={e => {
-            const value = e.target.value
-            methods.setValue(name, value)
-            setValue(value)
-            if (isFunction(onChangeValue)) {
-              onChangeValue(value)
-            }
-          }}
-          renderValue={() => (
-            value.map(val => {
-              let label
-              selections.forEach(opt => {
-                if (getValue(opt) === val) {
-                  label = getLabel(opt)
-                }
-              })
-              return (
-                <Chip key={val}
-                      label={label || val}
-                      className={classes.chip}/>
-              )
-            })
-          )
+    // <Wrap>
+    <FormControl
+      className={classes.formControl}
+      variant="outlined"
+      fullWidth={attributes.fullWidth}>
+      <InputLabel id={`${name}-label`}>{attributes.label || name}</InputLabel>
+      <Select
+        labelId={`${name}-label`}
+        id={name}
+        multiple
+        onChange={e => {
+          const value = e.target.value
+          methods.setValue(name, value)
+          setValue(value)
+          if (isFunction(onChangeValue)) {
+            onChangeValue(value)
           }
-          MenuProps={MenuProps}
-          inputRef={methods.register({ name })}
-          {...attributes}
-          value={value}
-        >
-          {selections.map(opt => {
+        }}
+        renderValue={() => (
+          value.map(val => {
+            let label
+            (items || selections).forEach(opt => {
+              if (getValue(opt) === val) {
+                label = getLabel(opt)
+              }
+            })
             return (
-              <MenuItem key={getKey(opt)} value={getValue(opt)}>
-                <Checkbox checked={checkSelected(getValue(opt))}/>
-                <ListItemText primary={getLabel(opt)}/>
-              </MenuItem>
+              <Chip key={val}
+                    label={label || val}
+                    className={classes.chip}/>
             )
-          })}
-        </Select>
-      </FormControl>
-    </Wrap>
+          })
+        )
+        }
+        MenuProps={MenuProps}
+        inputRef={methods.register({ name })}
+        {...attributes}
+        value={value}
+      >
+        {(items || selections).map(opt => {
+          return (
+            <MenuItem key={getKey(opt)} value={getValue(opt)}>
+              <Checkbox checked={checkSelected(getValue(opt))}/>
+              <ListItemText primary={getLabel(opt)}/>
+            </MenuItem>
+          )
+        })}
+      </Select>
+    </FormControl>
+    // </Wrap>
   )
 }
 

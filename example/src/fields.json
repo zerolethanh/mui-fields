@@ -50,7 +50,7 @@
       "province": {
         "label": "Nơi ở hiện tại",
         "select": true,
-        "selections": [
+        "items": [
           {
             "code": "HAN",
             "name": "Hà Nội"
@@ -70,7 +70,7 @@
       "sothich": {
         "isMultipleSelect": true,
         "label": "Sở thích",
-        "selections": [
+        "items": [
           "lập trình",
           "đọc sách báo",
           "chụp ảnh",
@@ -80,7 +80,7 @@
       "dev": {
         "isMultipleSelect": true,
         "label": "Dev",
-        "selections": [
+        "items": [
           {
             "value": "web",
             "label": "Web"

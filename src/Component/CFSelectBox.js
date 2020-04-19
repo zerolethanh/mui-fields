@@ -7,10 +7,10 @@ import selectUtils from './../utils/select'
 export default function CFSelectBox({ name, attributes, methods }) {
   const [value, setValue] = useState(attributes.defaultValue || attributes.value || '')
 
-  let { values, selections, onChangeValue } = attributes
+  let { values, selections, items, onChangeValue } = attributes
   const { getKey, getValue, getLabel } = selectUtils(attributes)
 
-  const children = (values || selections).map((opt) => {
+  const children = (items || values || selections).map((opt) => {
     return (
       <MenuItem key={getKey(opt)}
                 value={getValue(opt)}>
