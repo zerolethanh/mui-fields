@@ -22,8 +22,8 @@ export function isRadios(attrs) {
   return attrs.radio || attrs.radios
 }
 
-export function isGrid(name) {
-  return name === 'Grid'
+export function isGrid(attrs) {
+  return attrs.type === 'grid' || attrs.grid
 }
 
 export function lowcaseType(type) {

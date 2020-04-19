@@ -1,34 +1,46 @@
 {
-  "fullName": {
-    "label": "Họ và tên",
-    "value": "Lê Thành",
-    "required": true,
-    "autoFocus": true
-  },
-  "gender": {
-    "radios": true,
-    "title": "giới tính",
-    "options": [
-      {
-        "value": "m",
-        "label": "nam"
+  "nameGender": {
+    "grid": true,
+    "direction": "row",
+    "spacing": 1,
+    "items": {
+      "fullName": {
+        "label": "Họ và tên",
+        "value": "Lê Thành",
+        "required": true,
+        "autoFocus": true
       },
-      {
-        "value": "f",
-        "label": "nữ"
+      "gender": {
+        "radios": true,
+        "title": "giới tính",
+        "options": [
+          {
+            "value": "m",
+            "label": "nam"
+          },
+          {
+            "value": "f",
+            "label": "nữ"
+          }
+        ]
       }
-    ]
+    }
   },
-  "cmnd": {
-    "label": "Số cmnd/thẻ căn cước",
-    "type": "number",
-    "fullWidth": false
-  },
-  "dob": {
-    "label": "Ngày sinh",
-    "type": "date",
-    "defaultValue": "2010-01-20",
-    "fullWidth": false
+  "cmndDob": {
+    "grid": true,
+    "direction": "row",
+    "spacing": 1,
+    "items": {
+      "cmnd": {
+        "label": "Số cmnd/thẻ căn cước",
+        "type": "number"
+      },
+      "dob": {
+        "label": "Ngày sinh",
+        "type": "date",
+        "defaultValue": "2010-01-20"
+      }
+    }
   },
   "province": {
     "label": "Nơi ở hiện tại",
