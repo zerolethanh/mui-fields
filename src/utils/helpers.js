@@ -3,7 +3,7 @@ export function isCheckBox(attributes) {
 }
 
 export function isSwitch(attributes) {
-  return attributes.isSwitch || attributes.switch
+  return attributes.type === 'switch'
 }
 
 export function isSelectBox(attributes) {

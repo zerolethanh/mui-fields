@@ -1,48 +1,33 @@
-import { isCheckBox, isGrid, isMultipleSelect, isRadios, isSelectBox, isSwitch } from './helpers'
-import CFCheckbox from '../Component/CFCheckbox'
-import CFSelectBox from '../Component/CFSelectBox'
-import CFMultipleSelect from '../Component/CFMultipleSelect'
-// import CFMultipleSelectWithValueLabel from '../Component/CFMultipleSelectWithValueLabel'
-import CFRadios from '../Component/CFRadios'
-import CFTextField from '../Component/CFTextField'
 import React from 'react'
-import CFGrid from '../Component/CFGrid'
+import getComponent from './types'
+import _isPlainObject from 'lodash/isPlainObject'
+import _isArray from 'lodash/isArray'
 
 export default function render(fields, methods) {
-  return Object.keys(fields).map((name, idx) => {
-    const attributes = fields[name]
-    if (!attributes) return null
-    let Com
-    let otherProps = {}
-    if (isGrid(attributes)) {
-      // console.log(attributes.items)
-      return (<CFGrid name={`${name}_${idx}`}
-                      attributes={{ ...attributes }}
-                      methods={methods}/>)
-    } else if (isCheckBox(attributes)) {
-      Com = CFCheckbox
-    } else if (isSwitch(attributes)) {
-      Com = CFCheckbox
-      otherProps.isSwitch = true
-    } else if (isSelectBox(attributes)) {
-      Com = CFSelectBox
-    } else if (isMultipleSelect(attributes)) {
-      Com = CFMultipleSelect
-      // } else if (isMultipleSelectWithValueLabel(attributes)) {
-      //   Com = CFMultipleSelectWithValueLabel
-    } else if (isRadios(attributes)) {
-      Com = CFRadios
-    } else {
-      Com = CFTextField
+  // console.log({ fields })
+  if (_isPlainObject(fields)) {
+    const attrs = fields
+    return renderComponent(attrs, methods)
+  }
+
+  return fields.map((attrs, idx) => {
+    if (_isArray(attrs)) {
+      return render(attrs, methods)
     }
-    return (
-      <Com
-        key={name}
-        name={name}
-        attributes={attributes}
-        {...otherProps}
-        methods={methods}
-      />
-    )
+    if (!_isPlainObject(attrs)) return null
+    return renderComponent(attrs, methods)
   })
+}
+
+const renderComponent = (attrs, methods) => {
+  const { type, name } = attrs
+  let Com = getComponent(type)
+  return (
+    <Com
+      key={name}
+      name={name}
+      attributes={attrs}
+      methods={methods}
+    />
+  )
 }

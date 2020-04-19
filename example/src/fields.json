@@ -1,17 +1,20 @@
-{
-  "nameGender": {
-    "grid": true,
+[
+  {
+    "type": "grid",
+    "name": "fullNameGender",
     "direction": "row",
     "spacing": 1,
-    "items": {
-      "fullName": {
+    "items": [
+      {
+        "name": "fullName",
         "label": "Họ và tên",
         "value": "Lê Thành",
         "required": true,
         "autoFocus": true
       },
-      "gender": {
-        "radios": true,
+      {
+        "name": "gender",
+        "type": "radioGroup",
         "title": "giới tính",
         "options": [
           {
@@ -24,32 +27,37 @@
           }
         ]
       }
-    }
+    ]
   },
-  "cmndDob": {
-    "grid": true,
+  {
+    "type": "grid",
+    "name": "cmndDob",
     "direction": "row",
     "spacing": 1,
-    "items": {
-      "cmnd": {
+    "items": [
+      {
+        "name": "cmnd",
         "label": "Số cmnd/thẻ căn cước",
         "type": "number"
       },
-      "dob": {
+      {
+        "name": "dob",
         "label": "Ngày sinh",
         "type": "date",
         "defaultValue": "2010-01-20"
       }
-    }
+    ]
   },
-  "tinhSothichDev": {
-    "grid": true,
+  {
+    "type": "grid",
+    "name": "tinhSothichDev",
     "direction": "row",
     "spacing": 1,
-    "items": {
-      "province": {
+    "items": [
+      {
         "label": "Nơi ở hiện tại",
-        "select": true,
+        "name": "province",
+        "type": "select",
         "items": [
           {
             "code": "HAN",
@@ -67,8 +75,9 @@
           "width": 200
         }
       },
-      "sothich": {
-        "isMultipleSelect": true,
+      {
+        "name": "sothich",
+        "type": "multiSelect",
         "label": "Sở thích",
         "items": [
           "lập trình",
@@ -77,8 +86,9 @@
           "du lịch"
         ]
       },
-      "dev": {
-        "isMultipleSelect": true,
+      {
+        "name": "dev",
+        "type": "multiSelect",
         "label": "Dev",
         "items": [
           {
@@ -102,15 +112,16 @@
         "valuePath": "value",
         "labelPath": "label"
       }
-    }
+    ]
   },
-  "isVietNamese": {
+  {
+    "name": "isVietNamese",
     "label": "Là người Việt Nam",
-    "checkbox": true,
-    "checked": true,
-    "fullWidth": true
+    "type": "check"
   },
-  "submit": {
+  {
+    "name": "submit",
     "type": "submit"
   }
-}
+]
+

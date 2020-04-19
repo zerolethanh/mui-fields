@@ -1,19 +1,9 @@
 import React from 'react'
-import CFGrid from './Component/CFGrid'
+import render from './utils/render'
 
 export default (fields, methods) => {
-
-  const topGridAttrs = {
-    direction: 'column',
-    items: fields
-  }
+  // console.log({fields})
   return (
-    <CFGrid
-      name={'topGrid'}
-      attributes={topGridAttrs}
-      methods={methods}
-    >
-      {/*{render(fields, methods)}*/}
-    </CFGrid>
+    render(fields, methods)
   )
 }
